@@ -77,6 +77,10 @@ export function listen({
     loggingMode,
   });
   wsServer.on('connection', webSocket => {
+    console.log('RDB - JSON parse error - TEST');
+    console.log(webSocket);
+    console.log(webSocket.protocol);
+    console.log('RDB - JSON parse error -- TEST');
     const connection = new Connection(queryValidator, webSocket, loggingMode);
     connection.start({sessionCreator, dbHost, dbPort, dbAuthKey, dbSsl});
   });
