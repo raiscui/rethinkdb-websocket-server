@@ -130,10 +130,6 @@ function listen(_ref) {
     loggingMode: loggingMode
   });
   wsServer.on('connection', function (webSocket) {
-    console.log('RDB - JSON parse error - TEST');
-    console.log(webSocket);
-    console.log(webSocket.protocol);
-    console.log('RDB - JSON parse error -- TEST');
     var connection = new _Connection.Connection(queryValidator, webSocket, loggingMode);
     connection.start({ sessionCreator: sessionCreator, dbHost: dbHost, dbPort: dbPort, dbAuthKey: dbAuthKey, dbSsl: dbSsl });
   });
