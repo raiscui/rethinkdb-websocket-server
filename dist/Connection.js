@@ -158,7 +158,6 @@ var Connection = (function () {
       });
       this.webSocket.on('pong', function () {
         _this3.webSocket.isAlive = true;
-        console.log('PONG');
       });
     }
   }, {
