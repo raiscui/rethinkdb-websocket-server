@@ -80,5 +80,15 @@ export function listen({
     const connection = new Connection(queryValidator, webSocket, loggingMode);
     connection.start({sessionCreator, dbHost, dbPort, dbAuthKey, dbSsl});
   });
+  setInterval(() => {
+    wsServer.clients.forEach((ws) => {
+      if (ws.isAlive === false) {
+        return ws.terminate();
+      }
+
+      ws.isAlive = true;
+      ws.ping(() => {});
+    });
+  }, 30000);
   return wsServer;
 }

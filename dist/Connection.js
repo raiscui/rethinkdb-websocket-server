@@ -137,6 +137,7 @@ var Connection = (function () {
     value: function setupWebSocket() {
       var _this3 = this;
 
+      this.webSocket.isAlive = true;
       this.webSocket.on('message', function (msg) {
         if (!_this3.isClosed) {
           try {
@@ -155,6 +156,9 @@ var Connection = (function () {
       this.webSocket.on('error', function (e) {
         _this3.cleanupAndLogErr('webSocket error', e);
       });
+      this.webSocket.on('pong', function () {
+        _this3.webSocket.isAlive = true;
+      });
     }
   }, {
     key: 'log',
@@ -168,6 +172,7 @@ var Connection = (function () {
     key: 'cleanup',
     value: function cleanup() {
       this.isClosed = true;
+      this.webSocket.isAlive = false;
       this.dbSocket.destroy();
       this.webSocket.close();
     }

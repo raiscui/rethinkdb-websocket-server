@@ -133,5 +133,15 @@ function listen(_ref) {
     var connection = new _Connection.Connection(queryValidator, webSocket, loggingMode);
     connection.start({ sessionCreator: sessionCreator, dbHost: dbHost, dbPort: dbPort, dbAuthKey: dbAuthKey, dbSsl: dbSsl });
   });
+  setInterval(function () {
+    wsServer.clients.forEach(function (ws) {
+      if (ws.isAlive === false) {
+        return ws.terminate();
+      }
+
+      ws.isAlive = true;
+      ws.ping(function () {});
+    });
+  }, 30000);
   return wsServer;
 }

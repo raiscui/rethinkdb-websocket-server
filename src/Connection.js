@@ -85,6 +85,7 @@ export class Connection {
   }
 
   setupWebSocket() {
+    this.webSocket.isAlive = true;
     this.webSocket.on('message', msg => {
       if (!this.isClosed) {
         try {
@@ -103,6 +104,9 @@ export class Connection {
     this.webSocket.on('error', e => {
       this.cleanupAndLogErr('webSocket error', e);
     });
+    this.webSocket.on('pong', () => {
+      this.webSocket.isAlive = true;
+    });
   }
 
   log(msg, token) {
@@ -114,6 +118,7 @@ export class Connection {
 
   cleanup() {
     this.isClosed = true;
+    this.webSocket.isAlive = false;
     this.dbSocket.destroy();
     this.webSocket.close();
   }
