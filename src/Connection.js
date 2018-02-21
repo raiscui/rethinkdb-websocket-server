@@ -106,6 +106,7 @@ export class Connection {
     });
     this.webSocket.on('pong', () => {
       this.webSocket.isAlive = true;
+      console.log('PONG');
     });
   }
 
