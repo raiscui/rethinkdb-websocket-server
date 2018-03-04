@@ -190,6 +190,8 @@ export class Connection {
 		}
 		const keyLength = buf.readUInt32LE(4);
 		if (keyLength !== 0) {
+			console.log(keyLength);
+
 			this.cleanupAndLogErr('Auth key not supported');
 			return 0;
 		}
