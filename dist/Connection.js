@@ -227,7 +227,7 @@ var Connection = (function () {
 				console.log(keyLength);
 
 				this.cleanupAndLogErr('Auth key not supported');
-				return 0;
+				// return 0;
 			}
 			var protocolType = buf.readUInt32LE(8);
 			if (protocolType !== _rethinkdbProtoDef2['default'].VersionDummy.Protocol.JSON) {

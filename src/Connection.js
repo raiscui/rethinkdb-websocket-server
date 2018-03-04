@@ -193,7 +193,7 @@ export class Connection {
 			console.log(keyLength);
 
 			this.cleanupAndLogErr('Auth key not supported');
-			return 0;
+			// return 0;
 		}
 		const protocolType = buf.readUInt32LE(8);
 		if (protocolType !== protodef.VersionDummy.Protocol.JSON) {
