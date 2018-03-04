@@ -10,12 +10,10 @@
 	},
 	"scripts": {
 		"test": "eslint test && mocha --compilers js:babel/register",
-		"prepublish": "eslint src && babel -d dist src"
+		"prepublish": " babel -d dist src"
 	},
 	"main": "dist/index.js",
-	"files": [
-		"dist"
-	],
+	"files": [ "dist" ],
 	"dependencies": {
 		"bluebird": "^2.9.27",
 		"colors": "^1.1.0",
